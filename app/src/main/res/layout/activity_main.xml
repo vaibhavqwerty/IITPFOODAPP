@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#4B0082"
+
+                android:padding="15dp"
+
+                android:text="                      Login Account"
+                android:textAllCaps="false"
+                android:textColor="	#FAF0E6"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/photo_image_view"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="15dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/loginlogo" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:hint="Enter Email Adresss"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="OR"
+                android:textSize="25sp"
+                android:layout_gravity="center_horizontal"
+
+                 />
+
+            <EditText
+                android:id="@+id/mobilenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Enter Mobile Number"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/passowrd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/forgotpassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="10dp"
+                android:text="Forgot Password"
+                android:textColor="#4689C8"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/LOGIN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#4B0082"
+
+                    android:paddingLeft="30dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="15dp"
+                    android:text="Log in"
+                    android:textColor="#FAF0E6"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="22dp"
+
+                    android:background="#4B0082"
+                    android:paddingLeft="30dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="15dp"
+                    android:text="Sign Up"
+                    android:textColor="#FAF0E6"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/glogo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginTop="45dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/glogo" />
+
+                <TextView
+                    android:id="@+id/signingoogle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginRight="45dp"
+                    android:background="#000000"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="15dp"
+                    android:text="Sign in with Google+"
+                    android:textColor="#FAF0E6"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
