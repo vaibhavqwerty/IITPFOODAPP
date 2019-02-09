@@ -22,5 +22,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(signUp);
             }
         });
+        TextView signIn=findViewById(R.id.LOGIN);
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signIn =new Intent(MainActivity.this, Restaurants.class);
+                startActivity(signIn);
+            }
+        });
     }
 }
