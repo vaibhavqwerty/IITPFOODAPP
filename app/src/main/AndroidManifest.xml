@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/foodicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AryaCanteen"></activity>
+        <activity android:name=".snacks"></activity>
+        <activity android:name=".AryaCanteen" />
         <activity android:name=".Restaurants" />
         <activity
             android:name=".signUp"
