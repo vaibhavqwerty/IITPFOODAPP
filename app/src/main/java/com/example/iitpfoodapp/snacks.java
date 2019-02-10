@@ -27,7 +27,7 @@ public class snacks extends AppCompatActivity {
         food.add(new FoodItem("PAW BHAJI","35/-"));
         FoodItemAdapter Adapter = new FoodItemAdapter(this,food);
 
-        ListView listView =  findViewById(R.id.liste);
+        ListView listView =  findViewById(R.id.listSnacks);
 
         listView.setAdapter(Adapter);
 

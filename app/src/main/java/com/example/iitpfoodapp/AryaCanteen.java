@@ -21,5 +21,24 @@ public class AryaCanteen extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        TextView cake=findViewById(R.id.cake);
+        cake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AryaCanteen.this,cake.class);
+                startActivity(i);
+
+            }
+        });
+
+        TextView indianVegCurry=findViewById(R.id.indianVegCurry);
+        indianVegCurry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AryaCanteen.this,indianVegCurry.class);
+                startActivity(i);
+
+            }
+        });
     }
 }
