@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Quantity">
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Item ordered"
+        android:layout_margin="16dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Quantity:"
+        android:layout_margin="16dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/decQuan"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:text="-"
+            android:onClick="decrease"
+            />
+        <TextView
+            android:id="@+id/QuantityVal"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:text="0"/>
+        <Button
+            android:id="@+id/incQuan"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:text="+"
+            android:onClick="increase"
+
+            />
+
+
+
+<Button
+    android:id="@+id/AddToBasket"
+    android:layout_width="120dp"
+    android:layout_height="48dp"
+    android:text="Add to Basket"
+    android:textSize="12sp"
+    android:layout_marginLeft="34dp"
+    android:layout_marginRight="16dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/orderMore"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginLeft="50dp"
+            android:text="Order More"
+            />
+        <Button
+            android:id="@+id/procedeToPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:text="Procede To Payment"
+            />
+    </LinearLayout>
+</LinearLayout>

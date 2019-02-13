@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/foodicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".rotiRoll"></activity>
+        <activity android:name=".Quantity"></activity>
+        <activity android:name=".rotiRoll" />
         <activity android:name=".indianVegCurry" />
         <activity android:name=".cake" />
         <activity android:name=".snacks" />
