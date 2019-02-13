@@ -52,7 +52,7 @@
             android:textSize="18sp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="9dp"
             android:background="#FB8C00"
             />
         <TextView
@@ -81,7 +81,7 @@
             android:textSize="18sp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="9dp"
             android:background="#FB8C00"/>
         <TextView
             android:id="@+id/addToCart"
@@ -91,7 +91,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Add to Cart"
+            android:text="Add to Basket"
             android:textSize="16sp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
