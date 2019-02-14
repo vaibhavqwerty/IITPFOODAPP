@@ -7,9 +7,9 @@ public class FoodItem {
 
     public FoodItem(String fname,String fprice,int Price)
     {
-        foodName=fname;
-        foodPrice=fprice;
-        price=Price;
+        this.foodName=fname;
+        this.foodPrice=fprice;
+        this.price=Price;
     }
 
     public String getFoodName() {

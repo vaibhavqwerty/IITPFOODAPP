@@ -50,13 +50,14 @@
 
 
 <Button
-    android:id="@+id/AddToBasket"
+    android:id="@+id/addToBasket"
     android:layout_width="120dp"
     android:layout_height="48dp"
     android:text="Add to Basket"
     android:textSize="12sp"
     android:layout_marginLeft="34dp"
-    android:layout_marginRight="16dp"/>
+    android:layout_marginRight="16dp"
+    android:onClick="AddToBasket"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,11 +73,11 @@
             android:text="Order More"
             />
         <Button
-            android:id="@+id/procedeToPayment"
+            android:id="@+id/finalOrderList"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginLeft="16dp"
-            android:text="Procede To Payment"
+            android:text="Final Order List"
             />
     </LinearLayout>
 </LinearLayout>
