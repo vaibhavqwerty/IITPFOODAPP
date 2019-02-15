@@ -3,6 +3,7 @@ package com.example.iitpfoodapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signIn =new Intent(MainActivity.this, Restaurants.class);
                 startActivity(signIn);
+
+         TextView text = (TextView) findViewById(R.id.signingoogle);
+                 text.setMovementMethod(LinkMovementMethod.getInstance());
             }
         });
+
+
     }
 }
