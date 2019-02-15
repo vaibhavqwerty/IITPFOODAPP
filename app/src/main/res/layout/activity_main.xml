@@ -132,6 +132,7 @@
                     android:id="@+id/signingoogle"
                     android:layout_width="wrap_content"
                     android:layout_height="58dp"
+                    android:text="@string/LogintoGoogle"
                     android:layout_marginTop="45dp"
                     android:layout_marginRight="45dp"
                     android:background="#000000"
@@ -139,10 +140,10 @@
                     android:paddingTop="15dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="15dp"
-                    android:text="Sign in with Google+"
+
                     android:textColor="#FAF0E6"
 
-                    android:textStyle="bold" />
+                     />
 
             </LinearLayout>
         </LinearLayout>
