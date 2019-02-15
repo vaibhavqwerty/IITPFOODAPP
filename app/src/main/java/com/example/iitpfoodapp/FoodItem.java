@@ -3,11 +3,13 @@ package com.example.iitpfoodapp;
 public class FoodItem {
     private String foodName;
     private String foodPrice;
+    private int price;
 
-    public FoodItem(String fname,String fprice)
+    public FoodItem(String fname,String fprice,int Price)
     {
-        foodName=fname;
-        foodPrice=fprice;
+        this.foodName=fname;
+        this.foodPrice=fprice;
+        this.price=Price;
     }
 
     public String getFoodName() {
@@ -17,5 +19,5 @@ public class FoodItem {
     {
         return foodPrice;
     }
-
+    public int getPrice(){return price;}
 }
