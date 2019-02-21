@@ -24,14 +24,6 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/iitplogo" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:hint="Enter Email Adresss"
-                android:inputType="textEmailAddress"
-                android:padding="15dp" />
 
             <TextView
                 android:id="@+id/or"
@@ -39,112 +31,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="22dp"
-                android:text="OR"
-                android:textSize="16sp"
+                android:text="Welcome to  IITP FOOD APP"
+                android:textSize="18sp"
 
                 />
-
-            <EditText
-                android:id="@+id/mobilenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="Enter Mobile Number"
-                android:inputType="number"
-                android:padding="15dp" />
-
-            <EditText
-                android:id="@+id/passowrd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="15dp" />
-
-            <TextView
-                android:id="@+id/forgotpassword"
+            <Button
+                android:id="@+id/con"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="10dp"
-                android:text="Forgot Password"
-                android:textColor="#4689C8"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="150dp"
+                android:text="CONTINUE"/>
 
-            <LinearLayout
-                android:layout_width="363dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/LOGIN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#FB8C00"
 
-                    android:paddingLeft="30dp"
-                    android:paddingTop="15dp"
-                    android:paddingRight="30dp"
-                    android:paddingBottom="15dp"
-                    android:text="Log in"
-                    android:textColor="#FAF0E6"
 
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="22dp"
 
-                    android:background="#FB8C00"
-                    android:paddingLeft="30dp"
-                    android:paddingTop="15dp"
-                    android:paddingRight="30dp"
-                    android:paddingBottom="15dp"
-                    android:text="Sign Up"
-                    android:textColor="#FAF0E6"
 
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/glogo"
-                    android:layout_width="fill_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginLeft="45dp"
-                    android:layout_marginTop="45dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/glogo" />
-
-                <TextView
-                    android:id="@+id/signingoogle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginRight="45dp"
-                    android:background="#000000"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="15dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="15dp"
-                    android:text="Sign in with Google+"
-                    android:textColor="#FAF0E6"
-
-                    android:textStyle="bold" />
-
-            </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>
