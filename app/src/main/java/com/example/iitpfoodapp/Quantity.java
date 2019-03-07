@@ -11,7 +11,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Quantity extends AppCompatActivity {
-  public static ArrayList<String> finalList = new ArrayList<String>();
+  public static ArrayList<String> finalFood = new ArrayList<String>();
+    public static ArrayList<String> finalQuantity = new ArrayList<String>();
+    public static ArrayList<String> finalTotal = new ArrayList<String>();
     public static int totalPrice=0;
     public static int totalItems=0;
     int fprice;
@@ -54,7 +56,10 @@ finalOrderList.setOnClickListener(new View.OnClickListener() {
     int quan=0;
     public void AddToBasket(View view)
     {  totalItems++;
-        finalList.add(" "+food_name+" ("+food_price+")  Qty:"+quan+"   Total:"+quan*fprice+"/-");
+        //finalList.add(" "+food_name+" ("+food_price+")  Qty:"+quan+"   Total:"+quan*fprice+"/-");
+        finalFood.add(" "+food_name+" ("+food_price+") ");
+        finalQuantity.add(" Qty: "+quan+" ");
+        finalTotal.add(" Total:"+quan*fprice+"/-");
         totalPrice=totalPrice+(quan*fprice);
         Toast.makeText(Quantity.this,""+food_name+" Quantity:"+quan+" Added to basket",Toast.LENGTH_SHORT).show();
     }

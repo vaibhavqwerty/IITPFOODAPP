@@ -42,6 +42,7 @@
         android:padding="16dp"
         android:background="#FB8C00"/>
     <TextView
+        android:id="@+id/rotiRoll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

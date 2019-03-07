@@ -1,7 +1,10 @@
 package com.example.iitpfoodapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ public class indianVegCurry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indian_veg_curry);
-        ArrayList<FoodItem> food= new ArrayList<FoodItem>();
+       final ArrayList<FoodItem> food= new ArrayList<FoodItem>();
         food.add(new FoodItem("MIX VEG.","70/-",70));
         food.add(new FoodItem("VEG. KOFTA","100/-",100));
         food.add(new FoodItem("MUTTER PANEER","120/-",120));
@@ -37,6 +40,19 @@ public class indianVegCurry extends AppCompatActivity {
         FoodItemAdapter adapter =new FoodItemAdapter(this,food);
         ListView listView=findViewById(R.id.listIndianVegCurry);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FoodItem f=food.get(position);
+                Intent intent = new Intent(getBaseContext(), Quantity.class);
+                intent.putExtra("EXTRA_FOOD_NAME", f.getFoodName());
+                intent.putExtra("EXTRA_FOOD_PRICE", f.getFoodPrice());
+                intent.putExtra("EXTRA_PRICE",f.getPrice());
+                startActivity(intent);
+
+            }
+        });
+
 
     }
 }

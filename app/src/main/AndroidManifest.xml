@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/foodicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinalOrderList"></activity>
+        <activity android:name=".FinalOrderList" />
         <activity android:name=".Quantity" />
         <activity android:name=".rotiRoll" />
         <activity android:name=".indianVegCurry" />
@@ -17,9 +17,6 @@
         <activity android:name=".snacks" />
         <activity android:name=".AryaCanteen" />
         <activity android:name=".Restaurants" />
-        <activity
-            android:name=".signUp"
-            android:label="Register" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

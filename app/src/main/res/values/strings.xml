@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">IITP FOOD APP</string>
+    <string name="sign_out">Sign Out</string>
     <string name="LogintoGoogle">
-    <a href = "https://accounts.google.com">Sign in with Google++</a>
+    <a href="https://accounts.google.com">Sign in with Google++</a>
     </string>
+    <string name="title_activity_rotiroll">rotiroll</string>
 </resources>

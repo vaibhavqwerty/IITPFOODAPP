@@ -40,5 +40,16 @@ public class AryaCanteen extends AppCompatActivity {
 
             }
         });
+
+
+        TextView rollRoti=findViewById(R.id.rotiRoll);
+        rollRoti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(AryaCanteen.this,rotiRoll.class);
+                startActivity(i);
+
+            }
+        });
     }
 }

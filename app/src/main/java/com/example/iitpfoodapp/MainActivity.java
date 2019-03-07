@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.iitpfoodapp.FinalOrderList.mUsername;
 
 public class MainActivity extends AppCompatActivity {
    //Checking for Commit on the github
@@ -57,8 +62,10 @@ mAuthStateListener= new FirebaseAuth.AuthStateListener() {
         FirebaseUser user=firebaseAuth.getCurrentUser();
         if(user!=null)
         {
+
+            mUsername=user.getDisplayName();
           //user is signed in
-            Toast.makeText(MainActivity.this,"You are now signed in. Welcome to FreindlyChat!", Toast.LENGTH_SHORT).show();
+           Toast.makeText(MainActivity.this,"You are now signed in", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -75,6 +82,36 @@ mAuthStateListener= new FirebaseAuth.AuthStateListener() {
         }
     }
 };
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.sign_out_menu:
+                AuthUI.getInstance().signOut(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==RC_SIGN_IN){
+            if(resultCode==RESULT_OK){
+                Toast.makeText(this,"Signed in!",Toast.LENGTH_SHORT).show();
+            }
+            else if(resultCode==RESULT_CANCELED){
+                Toast.makeText(this,"Sign in Canceled",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
 
     }
 
