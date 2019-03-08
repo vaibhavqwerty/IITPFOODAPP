@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +86,8 @@ public class FinalOrderList extends AppCompatActivity {
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(FinalOrderList.this,"Order sent for verification",Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < totalItems; i++) {
                     foodList friendlyMessage = new foodList(finalFood.get(i), mUsername,finalQuantity.get(i),finalTotal.get(i));
                     mMessageDatabaseReference.push().setValue(friendlyMessage);

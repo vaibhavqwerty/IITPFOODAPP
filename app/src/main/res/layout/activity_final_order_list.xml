@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:text="Here is the final order list:"
         android:layout_margin="16dp"/>
+
     <ListView
+        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rootView"
         android:layout_marginLeft="16dp"
         android:orientation="vertical"></ListView>
     <TextView
@@ -29,12 +30,12 @@
         android:id="@+id/verify"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="verify"
+        android:text="Check the availabilty"
         android:layout_margin="16dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Procede To Payment"
+        android:text="Proceed To Payment"
 
         android:onClick="goToUpi"
         android:layout_margin="16dp"/>
