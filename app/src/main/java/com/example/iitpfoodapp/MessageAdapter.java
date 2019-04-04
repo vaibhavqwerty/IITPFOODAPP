@@ -28,8 +28,9 @@ public class MessageAdapter extends ArrayAdapter<foodList> {
         TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         TextView quantityTextView = (TextView) convertView.findViewById(R.id.quantityTextView);
         TextView totalPriceTextView = (TextView) convertView.findViewById(R.id.totalPriceTextView);
-
+        TextView statusTextView=(TextView) convertView.findViewById(R.id.statusTextView);
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView indexTextView=(TextView) convertView.findViewById(R.id.index);
 
         foodList message = getItem(position);
 
@@ -39,7 +40,9 @@ public class MessageAdapter extends ArrayAdapter<foodList> {
         messageTextView.setText(message.getText());
         quantityTextView.setText(message.getQuantity());
         totalPriceTextView.setText(message.getTotalPrice());
+        statusTextView.setText(message.getStatus());
         authorTextView.setText(message.getName());
+        indexTextView.setText(""+position);
 
         return convertView;
     }

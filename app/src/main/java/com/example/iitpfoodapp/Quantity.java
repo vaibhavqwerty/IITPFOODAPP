@@ -14,8 +14,10 @@ public class Quantity extends AppCompatActivity {
   public static ArrayList<String> finalFood = new ArrayList<String>();
     public static ArrayList<String> finalQuantity = new ArrayList<String>();
     public static ArrayList<String> finalTotal = new ArrayList<String>();
+    public static ArrayList<Integer> particularOrderPrice=new ArrayList<Integer>();
     public static int totalPrice=0;
     public static int totalItems=0;
+
     int fprice;
     String food_name;
     String food_price;
@@ -54,14 +56,18 @@ finalOrderList.setOnClickListener(new View.OnClickListener() {
 
     }
     int quan=0;
+
     public void AddToBasket(View view)
-    {  totalItems++;
+    { if(quan>0) {
+        totalItems++;
         //finalList.add(" "+food_name+" ("+food_price+")  Qty:"+quan+"   Total:"+quan*fprice+"/-");
-        finalFood.add(" "+food_name+" ("+food_price+") ");
-        finalQuantity.add(" Qty: "+quan+" ");
-        finalTotal.add(" Total:"+quan*fprice+"/-");
-        totalPrice=totalPrice+(quan*fprice);
-        Toast.makeText(Quantity.this,""+food_name+" Quantity:"+quan+" Added to basket",Toast.LENGTH_SHORT).show();
+        finalFood.add(" " + food_name + " (" + food_price + ") ");
+        finalQuantity.add(" Qty: " + quan + " ");
+        particularOrderPrice.add(quan * fprice);
+        finalTotal.add(" Total:" + quan * fprice + "/-");
+        totalPrice = totalPrice + (quan * fprice);
+        Toast.makeText(Quantity.this, "" + food_name + " Quantity:" + quan + " Added to basket", Toast.LENGTH_SHORT).show();
+    }
     }
     public void decrease(View view)
     {
