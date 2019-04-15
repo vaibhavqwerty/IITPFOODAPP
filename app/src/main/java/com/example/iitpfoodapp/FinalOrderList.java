@@ -1,9 +1,11 @@
 package com.example.iitpfoodapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +13,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -75,16 +78,18 @@ public static ArrayList<foodList> food;
         //********************
 
         Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-kk-mm-ss");
         final String dateToStr = format.format(today);
         userReference=dateToStr+firebaseAuth.getCurrentUser().getUid();
         food=new ArrayList<foodList>();
         for(int i=0;i<totalItems;i++) {
-            food.add(new foodList(finalFood.get(i), mUsername, finalQuantity.get(i), finalTotal.get(i)," Status:",dateToStr+firebaseAuth.getCurrentUser().getUid()));
+            food.add(new foodList(finalFood.get(i), mUsername, finalQuantity.get(i), finalTotal.get(i)," Status:",""+dateToStr+firebaseAuth.getCurrentUser().getUid()));
         }
         adapter=new MessageAdapter(this,R.layout.final_list,food);
         ListView listView=findViewById(R.id.rootView);
         listView.setAdapter(adapter);
+
+
 
         TextView grandTotal = findViewById(R.id.grandTotal);
      grandTotal.setText("Grand Total: " + totalPrice + "/-");
@@ -126,6 +131,44 @@ public static ArrayList<foodList> food;
         });
 
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                new AlertDialog.Builder(FinalOrderList.this)
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                //Toast.makeText(FinalOrderList.this, "No item selected"+position, Toast.LENGTH_SHORT).show();
+                                int val=position;
+
+                                int sub=particularOrderPrice.get(val);
+                                totalPrice=totalPrice-sub;
+                                TextView tp=findViewById(R.id.grandTotal);
+                                tp.setText("Grand Total:"+totalPrice+"/-");
+                                finalFood.remove(val);
+                                finalQuantity.remove(val);
+                                finalTotal.remove(val);
+                                food.remove(val);
+                                totalItems--;
+                                particularOrderPrice.remove(val);
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(FinalOrderList.this,""+sub,Toast.LENGTH_SHORT).show();
+
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
+
     }
     @Override
     protected void onStart()
@@ -162,39 +205,39 @@ public static ArrayList<foodList> food;
 //        }
 //    }
 
-    public void myClickHandler(View v) {
-        LinearLayout vwParentRow = (LinearLayout)v.getParent();
-        // LinearLayout qwerty=(LinearLayout)v.getParent().getParent();
-        //TextView child = (TextView)vwParentRow.getChildAt(0);
-        // child.setText("HI");
-        TextView key=(TextView)vwParentRow.getChildAt(2);
-//        TextView key1=(TextView)vwParentRow.getChildAt(3);
-//        LinearLayout ll=(LinearLayout)qwerty.getChildAt(0);
-//        TextView name=(TextView)ll.getChildAt(4);
-        int val=Integer.parseInt(key.getText().toString());
-
-        int sub=particularOrderPrice.get(val);
-        totalPrice=totalPrice-sub;
-        TextView tp=findViewById(R.id.grandTotal);
-        tp.setText("Grand Total:"+totalPrice+"/-");
-        finalFood.remove(val);
-        finalQuantity.remove(val);
-    finalTotal.remove(val);
-        food.remove(val);
-        totalItems--;
-        particularOrderPrice.remove(val);
-        adapter.notifyDataSetChanged();
-        Toast.makeText(this,""+sub,Toast.LENGTH_SHORT).show();
-//        mFirebaseDatabase1 = FirebaseDatabase.getInstance();
-//        mMessageDatabaseReference1 = mFirebaseDatabase1.getReference().child(name.getText().toString());
-//        mMessageDatabaseReference.child(key.getText().toString()).child("foodListArrayList").child(key1.getText().toString()).child("status").setValue("Status:Available");
+//    public void myClickHandler(View v) {
+//        LinearLayout vwParentRow = (LinearLayout)v.getParent();
+//        // LinearLayout qwerty=(LinearLayout)v.getParent().getParent();
+//        //TextView child = (TextView)vwParentRow.getChildAt(0);
+//        // child.setText("HI");
+//        TextView key=(TextView)vwParentRow.getChildAt(2);
+////        TextView key1=(TextView)vwParentRow.getChildAt(3);
+////        LinearLayout ll=(LinearLayout)qwerty.getChildAt(0);
+////        TextView name=(TextView)ll.getChildAt(4);
+//        int val=Integer.parseInt(key.getText().toString());
 //
-//        //  vwParentRow.setBackgroundColor();
-//        mMessageDatabaseReference1.child(key.getText().toString()).child("foodListArrayList").child(key1.getText().toString()).child("status").setValue("Status:Available");
-
-        vwParentRow.refreshDrawableState();
-
-
-    }
+//        int sub=particularOrderPrice.get(val);
+//        totalPrice=totalPrice-sub;
+//        TextView tp=findViewById(R.id.grandTotal);
+//        tp.setText("Grand Total:"+totalPrice+"/-");
+//        finalFood.remove(val);
+//        finalQuantity.remove(val);
+//    finalTotal.remove(val);
+//        food.remove(val);
+//        totalItems--;
+//        particularOrderPrice.remove(val);
+//        adapter.notifyDataSetChanged();
+//        Toast.makeText(this,""+sub,Toast.LENGTH_SHORT).show();
+////        mFirebaseDatabase1 = FirebaseDatabase.getInstance();
+////        mMessageDatabaseReference1 = mFirebaseDatabase1.getReference().child(name.getText().toString());
+////        mMessageDatabaseReference.child(key.getText().toString()).child("foodListArrayList").child(key1.getText().toString()).child("status").setValue("Status:Available");
+////
+////        //  vwParentRow.setBackgroundColor();
+////        mMessageDatabaseReference1.child(key.getText().toString()).child("foodListArrayList").child(key1.getText().toString()).child("status").setValue("Status:Available");
+//
+//        vwParentRow.refreshDrawableState();
+//
+//
+//    }
 
 }

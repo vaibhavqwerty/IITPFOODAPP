@@ -32,11 +32,30 @@
         android:id="@+id/grandTotal"
         android:layout_margin="16dp"
         android:text="Grand Total:"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+        android:text="Select delivery option:"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
     <Button
+        android:id="@+id/sendOrder"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Proceed To Payment"
+        android:text="Eat at shop"
+        android:layout_marginLeft="16dp"/>
+    <Button
+        android:id="@+id/homeDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Home Delivery"
+        android:layout_marginLeft="16dp"/>
 
-        android:onClick="goToUpi"
-        android:layout_margin="16dp"/>
+    </LinearLayout>
 </LinearLayout>
