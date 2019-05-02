@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/foodicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeDelivery"></activity>
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".OrderCodePage" />
+        <activity android:name=".historyList" />
+        <activity android:name=".history" />
+        <activity android:name=".HomeDelivery" />
         <activity android:name=".currentStatus" />
         <activity android:name=".FinalOrderList" />
         <activity android:name=".Quantity" />

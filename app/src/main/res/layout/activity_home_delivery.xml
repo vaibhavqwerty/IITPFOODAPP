@@ -13,6 +13,12 @@
     android:text="Enter your address for delivery:"
 
     />
+    <Button
+        android:id="@+id/addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Set default Address"/>
     <EditText
         android:id="@+id/address"
         android:layout_width="match_parent"
@@ -21,6 +27,7 @@
         android:layout_marginLeft="16dp"
         android:inputType="text"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +35,12 @@
         android:text="Enter your Mobile Number:"
 
         />
+    <Button
+        android:id="@+id/pho"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Set default Number"/>
     <EditText
         android:id="@+id/phoneNo"
         android:layout_width="match_parent"

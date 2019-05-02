@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//import static com.example.iitpfoodapp.MainActivity.UserUniqueId;
 import static com.example.iitpfoodapp.Quantity.finalFood;
 
 import static com.example.iitpfoodapp.Quantity.finalQuantity;
@@ -43,6 +44,7 @@ import static com.example.iitpfoodapp.Quantity.finalTotal;
 import static com.example.iitpfoodapp.Quantity.particularOrderPrice;
 import static com.example.iitpfoodapp.Quantity.totalItems;
 import static com.example.iitpfoodapp.Quantity.totalPrice;
+//import static com.example.iitpfoodapp.currentStatus.dateToStr;
 
 public class FinalOrderList extends AppCompatActivity {
 
@@ -60,6 +62,7 @@ public class FinalOrderList extends AppCompatActivity {
     public static String userReference;
     public static MessageAdapter adapter;
 public static ArrayList<foodList> food;
+public static String dateToStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +82,11 @@ public static ArrayList<foodList> food;
 
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-kk-mm-ss");
-        final String dateToStr = format.format(today);
+         dateToStr = format.format(today);
         userReference=dateToStr+firebaseAuth.getCurrentUser().getUid();
         food=new ArrayList<foodList>();
         for(int i=0;i<totalItems;i++) {
-            food.add(new foodList(finalFood.get(i), mUsername, finalQuantity.get(i), finalTotal.get(i)," Status:",""+dateToStr+firebaseAuth.getCurrentUser().getUid()));
+            food.add(new foodList(finalFood.get(i), firebaseAuth.getCurrentUser().getUid(), finalQuantity.get(i), finalTotal.get(i)," Status:",""+dateToStr+firebaseAuth.getCurrentUser().getUid()));
         }
         adapter=new MessageAdapter(this,R.layout.final_list,food);
         ListView listView=findViewById(R.id.rootView);
@@ -97,7 +100,7 @@ public static ArrayList<foodList> food;
 
         //firebase veirfy
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mMessageDatabaseReference = mFirebaseDatabase.getReference().child(mUsername);
+        mMessageDatabaseReference = mFirebaseDatabase.getReference().child(firebaseAuth.getCurrentUser().getUid()).child("Verification");
         mFirebaseDatabase1 = FirebaseDatabase.getInstance();
         mMessageDatabaseReference1 = mFirebaseDatabase1.getReference().child("Arya Services");
 
@@ -117,6 +120,11 @@ public static ArrayList<foodList> food;
                     finalfoodlist = new finalFoodList(food);
                     mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
                     mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
+                    mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
+                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Verification").setValue(" ");
+                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("UserName").setValue(mUsername);
+
                     // mMessageDatabaseReference.push().setValue(finalfoodlist);
                     //  mMessageDatabaseReference1.push().setValue(finalfoodlist);
                     Intent ii = new Intent(FinalOrderList.this, currentStatus.class);

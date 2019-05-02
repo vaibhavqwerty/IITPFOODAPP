@@ -16,6 +16,11 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,21 +37,26 @@ public class MainActivity extends AppCompatActivity {
    public static final int RC_SIGN_IN=1;
 private FirebaseAuth mFirebaseAuth;
 private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mMessageDatabaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mMessageDatabaseReference = mFirebaseDatabase.getReference().child("Users");
 //Authentication
+
         mFirebaseAuth=FirebaseAuth.getInstance();
+
         Button con =findViewById(R.id.con);
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i =new Intent(MainActivity.this,Restaurants.class);
-                startActivity(i);
+               verifyUserExistence();
 
 
 
@@ -63,7 +73,7 @@ mAuthStateListener= new FirebaseAuth.AuthStateListener() {
         if(user!=null)
         {
 
-            mUsername=user.getDisplayName();
+            //mUsername=user.getDisplayName();
           //user is signed in
            Toast.makeText(MainActivity.this,"You are now signed in", Toast.LENGTH_SHORT).show();
         }
@@ -97,6 +107,19 @@ mAuthStateListener= new FirebaseAuth.AuthStateListener() {
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
                 return true;
+
+            case R.id.history_menu:
+                Intent i=new Intent(MainActivity.this,history.class);
+                startActivity(i);
+                return true;
+
+
+            case R.id.Update_History:
+                Intent iI=new Intent(MainActivity.this,SettingActivity.class);
+                startActivity(iI);
+                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }}
@@ -126,5 +149,35 @@ mAuthStateListener= new FirebaseAuth.AuthStateListener() {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
 
+    }
+
+    private void verifyUserExistence()
+    {
+        String currentUserId = mFirebaseAuth.getCurrentUser().getUid();
+        //UserUniqueId=currentUserId;
+        mMessageDatabaseReference.child(currentUserId).child("info").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if((dataSnapshot.child("name").exists()))
+                {
+                    //sentToResturentsActivity();
+                    Toast.makeText(MainActivity.this,"Welcome" , Toast.LENGTH_SHORT).show();
+                    Intent i =new Intent(MainActivity.this,Restaurants.class);
+                    startActivity(i);
+                }
+                else
+                {
+                   // sentToSettingActivity();
+                    Intent i =new Intent(MainActivity.this,SettingActivity.class);
+                    startActivity(i);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

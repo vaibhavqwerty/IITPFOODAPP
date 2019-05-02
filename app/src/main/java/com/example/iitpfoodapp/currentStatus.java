@@ -31,22 +31,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import static com.example.iitpfoodapp.FinalOrderList.adapter;
+import static com.example.iitpfoodapp.FinalOrderList.dateToStr;
 import static com.example.iitpfoodapp.FinalOrderList.food;
 import static com.example.iitpfoodapp.FinalOrderList.mUsername;
 import static com.example.iitpfoodapp.FinalOrderList.userReference;
+//import static com.example.iitpfoodapp.MainActivity.UserUniqueId;
 import static com.example.iitpfoodapp.Quantity.finalFood;
 import static com.example.iitpfoodapp.Quantity.finalQuantity;
 import static com.example.iitpfoodapp.Quantity.finalTotal;
 import static com.example.iitpfoodapp.Quantity.particularOrderPrice;
 import static com.example.iitpfoodapp.Quantity.totalItems;
 import static com.example.iitpfoodapp.Quantity.totalPrice;
+import static com.example.iitpfoodapp.Restaurants.FirebaseAddress;
+import static com.example.iitpfoodapp.Restaurants.FirebasePhone;
 
 public class currentStatus extends AppCompatActivity {
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessageDatabaseReference;
+    private FirebaseDatabase mFirebaseDatabaseHis;
+    private DatabaseReference mMessageDatabaseReferenceHis;
     private FirebaseDatabase mFirebaseDatabaseQ;
     private DatabaseReference mMessageDatabaseReferenceQ;
     private ChildEventListener mChildEventListner;
@@ -56,6 +63,8 @@ public class currentStatus extends AppCompatActivity {
     private ListView OrderView;
     FirebaseAuth firebaseAuth;
     private MediaPlayer mediaplayer;
+    public static int random;
+    //public static String dateToStr;
     private ArrayList<foodList> ll;
 
     @Override
@@ -68,7 +77,7 @@ public class currentStatus extends AppCompatActivity {
         TextView tp=findViewById(R.id.grandTotal);
         tp.setText("Grand Total:"+totalPrice+"/-");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mMessageDatabaseReference = mFirebaseDatabase.getReference().child(mUsername).child(userReference).child("foodListArrayList");
+        mMessageDatabaseReference = mFirebaseDatabase.getReference().child(firebaseAuth.getCurrentUser().getUid()).child("Verification").child(userReference).child("foodListArrayList");
         ll=new ArrayList<foodList>();
         mMessageAdapter = new MessageAdapter(currentStatus.this, R.layout.final_list, ll);
         OrderView=findViewById(R.id.orderOfConsumer);
@@ -76,9 +85,9 @@ public class currentStatus extends AppCompatActivity {
 
 
 
-        Date today = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-kk-mm-ss");
-        final String dateToStr = format.format(today);
+//        Date today = new Date();
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-kk-mm-ss");
+//         dateToStr = format.format(today);
         //userReference=dateToStr+firebaseAuth.getCurrentUser().getUid();
         mChildEventListner= new ChildEventListener() {
             @Override
@@ -137,6 +146,8 @@ public class currentStatus extends AppCompatActivity {
         //*********************
         mFirebaseDatabaseQ = FirebaseDatabase.getInstance();
         mMessageDatabaseReferenceQ = mFirebaseDatabaseQ.getReference().child("Arya Services Counter");
+        mFirebaseDatabaseHis = FirebaseDatabase.getInstance();
+        mMessageDatabaseReferenceHis = mFirebaseDatabaseHis.getReference().child(firebaseAuth.getCurrentUser().getUid()).child("History");
 
 
         Button mSendButton = findViewById(R.id.sendOrder);
@@ -144,20 +155,59 @@ public class currentStatus extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(totalItems>0) {
-                    Toast.makeText(currentStatus.this, "Order sent", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(currentStatus.this)
+                            .setTitle("Sending Order")
+                            .setMessage("Are you sure you want to send the order?")
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Continue with delete operation
+                                    Toast.makeText(currentStatus.this, "Order sent", Toast.LENGTH_SHORT).show();
 //                for (int i = 0; i < totalItems; i++) {
 //                    foodList friendlyMessage = new foodList(finalFood.get(i), mUsername,finalQuantity.get(i),finalTotal.get(i));
 //                    mMessageDatabaseReference.push().setValue(friendlyMessage);
 //                    foodList friendlyMessage1 = new foodList(finalFood.get(i), mUsername,finalQuantity.get(i),finalTotal.get(i));
 //                    mMessageDatabaseReference1.push().setValue(friendlyMessage);
 //                }
-                    finalfoodlist = new finalFoodList(food);
-                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
-                    //mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
-                    // mMessageDatabaseReference.push().setValue(finalfoodlist);
-                    //  mMessageDatabaseReference1.push().setValue(finalfoodlist);
-                    //Intent ii = new Intent(FinalOrderList.this, currentStatus.class);
-                    //startActivity(ii);
+                                    finalfoodlist = new finalFoodList(food);
+                                    random = new Random().nextInt(9000) + 1000;
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("OrderCode").setValue(""+random);
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and Time").setValue(dateToStr);
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Phone").setValue(FirebasePhone);
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Address").setValue(FirebaseAddress);
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("UserName").setValue(mUsername);
+                                    mMessageDatabaseReferenceQ.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Price").setValue(""+totalPrice);
+
+
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("OrderCode").setValue(""+random);
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and Time").setValue(dateToStr);
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Phone").setValue(FirebasePhone);
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Address").setValue(FirebaseAddress);
+                                    mMessageDatabaseReferenceHis.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Price").setValue(""+totalPrice);
+
+                                    //mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+                                    // mMessageDatabaseReference.push().setValue(finalfoodlist);
+                                    //  mMessageDatabaseReference1.push().setValue(finalfoodlist);
+                                    //Intent ii = new Intent(FinalOrderList.this, currentStatus.class);
+                                    //startActivity(ii);
+
+                                   Intent iii=new Intent(currentStatus.this,OrderCodePage.class);
+                                   startActivity(iii);
+
+                                }
+                            })
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+
 
                 }
                 else
