@@ -71,6 +71,7 @@ public class currentStatus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_status);
+        setTitle("Order Status");
         mediaplayer=MediaPlayer.create(this,R.raw.bee);
         firebaseAuth = FirebaseAuth.getInstance();
 

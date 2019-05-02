@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
    //Checking for Commit on the github
 //private String mUsername;
 
+
        List<AuthUI.IdpConfig> providers = Arrays.asList(
                new AuthUI.IdpConfig.EmailBuilder().build(),
                new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -43,6 +44,7 @@ private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFirebaseDatabase = FirebaseDatabase.getInstance();

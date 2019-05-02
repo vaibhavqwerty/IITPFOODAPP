@@ -68,6 +68,7 @@ public static String dateToStr;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_order_list);
+        setTitle("Final Order List");
 
             firebaseAuth = FirebaseAuth.getInstance();
 //        LinearLayout rootView = findViewById(R.id.rootView);
@@ -110,27 +111,50 @@ public static String dateToStr;
             @Override
             public void onClick(View view) {
                 if(totalItems>0) {
-                    Toast.makeText(FinalOrderList.this, "Order sent for verification", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(FinalOrderList.this)
+                            .setTitle("Send Order for Verfication")
+                            .setMessage("Are you sure you want to send it for verification")
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Continue with delete operation
+                                    //_____________________
+                                    Toast.makeText(FinalOrderList.this, "Order sent for verification", Toast.LENGTH_SHORT).show();
 //                for (int i = 0; i < totalItems; i++) {
 //                    foodList friendlyMessage = new foodList(finalFood.get(i), mUsername,finalQuantity.get(i),finalTotal.get(i));
 //                    mMessageDatabaseReference.push().setValue(friendlyMessage);
 //                    foodList friendlyMessage1 = new foodList(finalFood.get(i), mUsername,finalQuantity.get(i),finalTotal.get(i));
 //                    mMessageDatabaseReference1.push().setValue(friendlyMessage);
 //                }
-                    finalfoodlist = new finalFoodList(food);
-                    mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
-                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
-                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
-                    mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
-                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Verification").setValue(" ");
-                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("UserName").setValue(mUsername);
+                                    finalfoodlist = new finalFoodList(food);
+                                    mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+                                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).setValue(finalfoodlist);
+                                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
+                                    mMessageDatabaseReference.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Date and time").setValue(dateToStr);
+                                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("Verification").setValue(" ");
+                                    mMessageDatabaseReference1.child(dateToStr + firebaseAuth.getCurrentUser().getUid()).child("UserName").setValue(mUsername);
 
-                    // mMessageDatabaseReference.push().setValue(finalfoodlist);
-                    //  mMessageDatabaseReference1.push().setValue(finalfoodlist);
-                    Intent ii = new Intent(FinalOrderList.this, currentStatus.class);
-                    startActivity(ii);
+                                    // mMessageDatabaseReference.push().setValue(finalfoodlist);
+                                    //  mMessageDatabaseReference1.push().setValue(finalfoodlist);
+                                    Intent ii = new Intent(FinalOrderList.this, currentStatus.class);
+                                    startActivity(ii);
+                                    //______________________________
 
-                }
+                                }
+                            })
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+
+
+            }
+
+
                 else
                 { Toast.makeText(FinalOrderList.this, "No item selected", Toast.LENGTH_SHORT).show();
 

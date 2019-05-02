@@ -12,6 +12,12 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Order list sent for verification:"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:text="WAIT FOR ORDER AVAILABILITY CONFIRMATION"
+        android:textStyle="bold"/>
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="350dp"

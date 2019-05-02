@@ -3,6 +3,9 @@ package com.example.iitpfoodapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ public class Quantity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quantity);
+        setTitle("Item");
 
 
          food_name = getIntent().getStringExtra("EXTRA_FOOD_NAME");
@@ -68,6 +72,10 @@ finalOrderList.setOnClickListener(new View.OnClickListener() {
         totalPrice = totalPrice + (quan * fprice);
         Toast.makeText(Quantity.this, "" + food_name + " Quantity:" + quan + " Added to basket", Toast.LENGTH_SHORT).show();
     }
+    else
+    {
+        Toast.makeText(Quantity.this,"No quantity Selected",Toast.LENGTH_SHORT).show();
+    }
     }
     public void decrease(View view)
     {
@@ -77,6 +85,7 @@ finalOrderList.setOnClickListener(new View.OnClickListener() {
             display();
 
         }
+
     }
     public void increase(View view)
     {
@@ -92,5 +101,27 @@ finalOrderList.setOnClickListener(new View.OnClickListener() {
         TextView t=findViewById(R.id.QuantityVal);
         t.setText(" "+ quan);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.final_list, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
 
+
+            case R.id.final_menu:
+                Intent i=new Intent(Quantity.this,FinalOrderList.class);
+                startActivity(i);
+                return true;
+
+
+
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }}
 }

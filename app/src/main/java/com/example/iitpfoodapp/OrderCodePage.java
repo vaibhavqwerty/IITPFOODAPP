@@ -15,6 +15,7 @@ public class OrderCodePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_code_page);
+        setTitle("Order Code");
         TextView tt=findViewById(R.id.ordercoding);
         tt.setText("Your ORDER CODE is:"+random);
         Button bb=findViewById(R.id.retres);

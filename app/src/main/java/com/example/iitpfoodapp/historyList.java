@@ -10,6 +10,7 @@ public class historyList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Order List");
         setContentView(R.layout.activity_history_list);
 
         OrderView=findViewById(R.id.HistoryList);

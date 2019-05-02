@@ -45,6 +45,7 @@ public class HomeDelivery extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_delivery);
+        setTitle("Home Delivery");
        final EditText val=findViewById(R.id.address);
         final EditText val1=findViewById(R.id.phoneNo);
         firebaseAuth = FirebaseAuth.getInstance();

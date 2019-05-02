@@ -38,6 +38,7 @@ public class history extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         mMessageListViewH=findViewById(R.id.historyList);
+        setTitle("Payment History");
         listOfListH=new ArrayList<>();
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabaseH=FirebaseDatabase.getInstance();
